@@ -1,1 +1,1 @@
-web: gunicorn dashboard-corona-sn:server
+web: gunicorn Dashboard:server
