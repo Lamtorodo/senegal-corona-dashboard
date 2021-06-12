@@ -130,7 +130,6 @@ def plot_continent_data(data, keyword):
     colors = ["#031cfc", "#24b514", "#d11d1d"]
     for col, color in zip(cols, colors):
         plot_data.append(go.Bar(x=res.index.to_list(), y=res[col], name=col, marker=dict(color=color)))
-        #print(res.index.to_list() ,res[col])
     layout = go.Layout(title=f"Corona {keyword} Cases/Recovered/Deaths",
                        xaxis=dict(title="Continents"),
                        yaxis=dict(title="Cases per Continent"))
@@ -139,7 +138,7 @@ def plot_continent_data(data, keyword):
     return fig    
 def plot_country_data(data):
     """
-    This function creates a Figure from continental data.
+    This function creates a Figure from Senegal' data.
 
     Parameters:
         data : dataframe
@@ -173,12 +172,11 @@ def plot_country_data(data):
     return fig
 def plot_country_continent_data(data):
     """
-    This function creates a Figure from continental data.
+    This function creates a Figure to compare Senegal data to the continent Data.
 
     Parameters:
         data : dataframe
             The whole dataset.
-
     Returns:
         fig : Figure
             The figure that will be drawed on plotly.
@@ -205,7 +203,7 @@ def plot_country_continent_data(data):
     frames = [res, country]
     result = pd.concat(frames,axis=0)
     fig = px.bar(result, x=result.index.to_list(), y=result["TotalDeaths"]) 
-    
+    return fig    
 def get_continent_sorted_data(data, continent, sortedby="TotalCases", ascending=False):
     """
     This function creates a sorted dataframe related to a continent and sorted by a columns.
