@@ -136,6 +136,16 @@ def plot_continent_data(data, keyword):
 
     fig = go.Figure(data=plot_data, layout=layout)
     return fig    
+def SenegalData():
+    values =[]
+    for index, row in data.iterrows():
+        if(index =='Senegal'):
+            country = row.to_frame().T
+            del country['Continent']
+            del country['Population']
+            del country['1 Caseevery X ppl1 Deathevery X ppl1 Testevery X ppl']
+            values.append(country.T.values)
+    return country,values    
 def plot_country_data(data):
     """
     This function creates a Figure from Senegal' data.
@@ -148,21 +158,9 @@ def plot_country_data(data):
         fig : Figure
             The figure that will be drawed on plotly.
     """
-    Row_list =[]
-    for index, row in data.iterrows():
-        if(index =='Senegal'):
-            values=row
-            country = row.to_frame().T
-            del country['Continent']
-            del country['Population']
-            del country['1 Caseevery X ppl1 Deathevery X ppl1 Testevery X ppl']
-            del values["Continent"]
-            del values['Population']
-            del values['1 Caseevery X ppl1 Deathevery X ppl1 Testevery X ppl']
-            my_list = country.T.values
-            Row_list.append(my_list)
+    country,values = SenegalData();
     list = []
-    for i in Row_list[0]:
+    for i in values[0]:
         list.append((i[0]))
     df = pd.DataFrame({
     "attributs": country.T.index.tolist(),
@@ -181,20 +179,8 @@ def plot_country_continent_data(data):
         fig : Figure
             The figure that will be drawed on plotly.
     """
-    Row_list =[]
     df=data.loc[data['Continent'] == "Africa"]
-    for index, row in df.iterrows():
-        if(index =='Senegal'):
-            values=row
-            country = row.to_frame().T
-            del country['Continent']
-            del country['Population']
-            del country['1 Caseevery X ppl1 Deathevery X ppl1 Testevery X ppl']
-            del values["Continent"]
-            del values['Population']
-            del values['1 Caseevery X ppl1 Deathevery X ppl1 Testevery X ppl']
-            my_list = country.T.values
-            Row_list.append(my_list)
+    country,values = SenegalData()
     df = df.drop('Senegal')
     res = df.groupby("Continent").sum()
     del res['Population']
