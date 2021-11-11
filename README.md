@@ -11,8 +11,11 @@ Link :https://dashboard-corona-sn.herokuapp.com/
 
 ## Overview 
 This is a web app where we can find all the informations about the evolution of the Covid in the world.
+
 We collect the data from https://www.worldometers.info/coronavirus/ by using a web scraping with Beautiful Soup 4 of Python.
+
 And after that we use Dash to visualize the informations.
+
 You can see how we work by opening the Dashboard.py file .
 
 ## Installation
